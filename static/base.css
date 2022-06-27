@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    /* border: 2px #0085a5 solid; */
+    display: flex;
+    flex-direction: column;
+}
+
+#header{
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    grid-template-areas: "div nav div";
+    align-items: center;
+    padding: 10px;
+    font-family: "Bahnschrift", Times, serif;
+    background-color: #24252a;
+    color: white;
+}
+
+#title{
+    font-size: 3ch;
+    /* this is for gradient */
+    background-color: #f3ec78;
+    background-image: linear-gradient(45deg, #f3ec78, #af4261);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+    /* gradient ends here */
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+nav>a{
+    /* margin:0 1vw; */
+    flex-grow: 1;
+    text-align: center;
+    color: blanchedalmond;
+    text-decoration: solid;
+}
+nav>a:active{
+    color: red;
+}
+
+
+#activepage{
+    background-color: #0085a5;
+    padding: 5px 20px;
+    border-radius: 20px;
+    width: 10ch;
+    text-align: center;
+    justify-self: end;
+    background-color:  #4F86C6;
+    color: #BFEDEF;
+    text-transform: capitalize;
+}
+
+#alert{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #98E2C6;
+}
+
+#alert>p{
+    font-family: "Bahnschrift", Times, serif;
+    margin: 5px 10px;
+    /* padding: 20px 10px; */
+}
+#alert>button{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    margin-right: 10px;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    background-color: #bfedef;
+}

@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Koulen&family=Roboto+Mono&display=swap');
+/* font-family: 'Koulen', cursive;
+font-family: 'Roboto Mono', monospace; */
+
+h1{
+    text-align: center;
+}
+
+form{
+    width: fit-content;
+    font-family: 'Koulen', cursive;
+    /* border: 2px black solid; */
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: #98E2C6;
+    border-radius: 7px;
+    /* font-size: 3ch; */
+    /* color: #; */
+}
+form>label{
+    font-size: 3ch;
+    line-height: 2ch;
+}
+form>input{
+    margin-bottom: 8px;
+    font-size: 2ch;
+    padding: 5px;
+    border-width: 0px;
+    outline-width: 0px;
+    border-radius: 5px;
+    font-family: 'Roboto Mono', monospace;
+}
+form>input:focus{
+    /* border: #98E2C6 5px solid; */
+    /* border: blueviolet 1px solid;
+    outline-width: 0px; */
+    /* border-width: 0px; */
+}
+form>button{
+    margin: 5px 0px;
+    padding: 5px 0px;
+    /* border: blueviolet 1px solid; */
+    border-width: 0px;
+    outline-width: 0px;
+    border-radius: 5px;
+    background-color: #4F86C6;
+    color: #BFEDEF;
+    font-family: 'Koulen', cursive;
+    font-size: 3ch;
+    line-height: 2ch;
+
+    /* border-width: 0px; */
+}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{value}}{% endblock %}
+{% block activepage %}{{value}}{% endblock %}
+
+{% block main %}
+    {% load static%}
+    <link rel="stylesheet" href={% static "main/auth.css" %}>
+    <form action="" method="post">
+    {% csrf_token %}
+    {% if value == "signup" %}
+            <h1>SignUp</h1>
+            <label for="email">Email Id:</label>
+            <input type="email" name="email" placeholder="name@example.com">
+
+            <label for="name">Name:</label>
+            <input type="text" name="name" placeholder="john row">
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" placeholder="#$!2^&">
+            <button type="submit">Submit</button>
+            <!-- {{form.as_p}} -->
+        
+    {% elif value == "login" %}
+            <h1>Login</h1>
+            <label for="email">Email Id:</label>
+            <input type="email" name="email" placeholder="Enter email here">
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" placeholder="Enter password">
+            <button type="submit">Submit</button>
+        
+    {% endif%}
+</form>
+<!-- </div> -->
+
+
+
+{% endblock %}
+

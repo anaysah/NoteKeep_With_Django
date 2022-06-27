@@ -1,0 +1,55 @@
+main{
+    justify-content: flex-start;
+}
+
+form{
+    display: flex;
+    /* width: 100%; */
+    font-family: "Bahnschrift", Times, serif;   
+    align-items: flex-start;
+    padding: 20px;
+    flex-direction: column;
+    background-color: #98E2C6;
+    margin: 20px;
+    border-radius: 7px;
+    /* margin-left: 20px; */
+}
+form>textarea{
+    font-size: .8rem;
+    letter-spacing: 1px;
+    padding: 10px;
+    max-width: 100%;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+}
+
+form>button{
+    font-size: 2ch;
+    padding: 5px 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+     
+}
+
+#allnotes{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0px 20px;
+}
+#allnotes>ul{
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #98E2C6;
+    border-radius: 5px;
+    font-family: "Bahnschrift", Times, serif;   
+}
+#allnotes>ul>button{
+    margin-left: 10px;
+    padding: 0px 3px;
+}
