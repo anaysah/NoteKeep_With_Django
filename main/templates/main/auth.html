@@ -23,11 +23,12 @@
     {% elif value == "login" %}
             <h1>Login</h1>
             <label for="email">Email Id:</label>
-            <input type="email" name="email" placeholder="Enter email here">
+            <input type="username" name="email" placeholder="Enter email here">
 
             <label for="password">Password:</label>
             <input type="password" name="password" placeholder="Enter password">
             <button type="submit">Submit</button>
+            <p>{{authen}}</p>
         
     {% endif%}
 </form>

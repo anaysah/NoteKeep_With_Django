@@ -18,7 +18,7 @@ from django.urls import path, include
 
 from main import views as mainV
 mainUrl = [path("home",mainV.home),]
-authUrl = [path("login",mainV.login),path("signup",mainV.signup)]
+authUrl = [path("login",mainV.login),path("signup",mainV.signup),path("logout",mainV.logout)]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
