@@ -3,9 +3,9 @@
 {% block activepage %}Home{% endblock %}
 
 {% block main%}
-
 {% load static%}
 <link rel="stylesheet" href={% static "main/home.css" %}>
+<!-- <p>this is ->{{user.is_authenticated}}<- here</p> -->
 <form action="" method="POST">
     <h1>Add Note:</h1>
     <textarea name="note" id="" rows="5" cols="33" ></textarea>

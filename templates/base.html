@@ -16,10 +16,14 @@
     <div id="header">
         <div id="title">AttSchool</div>
         <nav>
+            <!-- <p>this is ->{{user.is_authenticated}}<- here</p> -->
+            {% if user.is_authenticated %}
             <a href="/home">Home</a>
             <a href="/auth/logout">Logout</a>
+            {% else %}
             <a href="/auth/login">Login</a>
             <a href="/auth/signup">SignUp</a>
+            {% endif %}
         </nav>
         <div id="activepage">{% block activepage %}Home{% endblock %}</div>
     </div>

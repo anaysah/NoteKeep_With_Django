@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login as loginAs, logout as logout
 
 def home(response):
     if response.user.is_authenticated:
-        return render(response,'main/home.html',{})
+        return render(response,'main/home.html',{"user":response.user})
     else:
         return redirect("http://127.0.0.1:8000/auth/login")
 
