@@ -2,25 +2,38 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as loginAs, logout as logoutAs
+from django import forms
+from .models import Notes
 
 
-
+class NoteForm(forms.Form):
+    noteFeild = forms.CharField(max_length = 200,label="Note:",widget=forms.Textarea(attrs={"rows":5, "cols":33,"class":"addNote"}))
+    
 def home(response):
+    NoteFormObj = NoteForm()
+    print(response.path)
     if response.user.is_authenticated:
-        return render(response,'main/home.html',{"user":response.user})
+        if response.method == "POST":
+            data = response.POST['noteFeild']
+            note = Notes(data=data,user=response.user)
+            note.save()
+            return redirect("/home")
+        elif response.method == "GET":
+            return render(response,'main/home.html',{"user":response.user,"NoteFormObj":NoteFormObj})
     else:
-        return redirect("http://127.0.0.1:8000/auth/login")
+        return redirect("/auth/login")
 
 def login(res):
-    user="nothing"
+    if res.user.is_authenticated:
+        return redirect("/home")
     if res.method == "POST":
         username = res.POST['email']
         password = res.POST['password']
         user = authenticate(res,username=username, password=password)
         if user is not None:
             loginAs(res,user)
-            return render(res,'main/home.html',{})
-    data = {"value":"login","authen":user}
+            return redirect("/home")
+    data = {"value":"login"}
     return render(res,'main/auth.html',data)
 
 def signup(res):
@@ -32,7 +45,7 @@ def signup(res):
         # print(form.is_valid())    
         # if form.is_valid():
         #     form.save()
-        return redirect("http://127.0.0.1:8000/auth/signup")
+        return redirect("/auth/signup")
     # elif res.method == "GET":
         # form = UserCreationForm()
     data = {"value":"signup"}
@@ -41,4 +54,4 @@ def signup(res):
 def logout(res):
     if res.user.is_authenticated:
         logoutAs(res)
-    return redirect("http://127.0.0.1:8000/auth/login")
+    return redirect("/auth/login")

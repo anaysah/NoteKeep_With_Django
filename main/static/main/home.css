@@ -14,8 +14,13 @@ form{
     border-radius: 7px;
     /* margin-left: 20px; */
 }
+[for="id_noteFeild"]{
+    font-size: 3ch;
+    font-weight: bold;
+}
 form>textarea{
     font-size: .8rem;
+    
     letter-spacing: 1px;
     padding: 10px;
     max-width: 100%;
@@ -32,6 +37,7 @@ form>button{
     border-radius: 5px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px #999;
+    /* background-color: blue; */
      
 }
 

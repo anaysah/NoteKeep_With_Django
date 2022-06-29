@@ -7,8 +7,10 @@
 <link rel="stylesheet" href={% static "main/home.css" %}>
 <!-- <p>this is ->{{user.is_authenticated}}<- here</p> -->
 <form action="" method="POST">
-    <h1>Add Note:</h1>
-    <textarea name="note" id="" rows="5" cols="33" ></textarea>
+    <!-- <h1>Add Note:</h1>
+    <textarea name="note" id="" rows="5" cols="33" ></textarea> -->
+    {% csrf_token %}
+    {{NoteFormObj}}
     <button>Add</button>
 </form>
 <div id="allnotes">
