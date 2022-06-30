@@ -16,7 +16,7 @@
     <ul>
         <form action="/deletenote" style="display:inline;" method="post">
             {% csrf_token %}
-        {{note.data}}
+        {{note.data}}   
         <button type="submit" name="noteid" value="{{note.id}}">&times;</button>
     </form>
     </ul>

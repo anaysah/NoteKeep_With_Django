@@ -18,7 +18,7 @@ def home(response):
             note = Notes(data=data,user=response.user)
             note.save()
             return redirect("/home")
-        elif response.method == "GET" and response.path=="/home":
+        elif response.method == "GET" and (response.path=="/home" or response.path=="/"):
             allNotes = response.user.notes_set.all()
             return render(response,'main/home.html',{"user":response.user,"NoteFormObj":NoteFormObj,"allNotes":allNotes})
     else:
