@@ -24,7 +24,12 @@ def home(response):
     else:
         return redirect("/auth/login")
 
-
+def deleteNote(res):
+    if res.method == "POST" and res.user.is_authenticated:
+        noteOfId =  Notes.objects.filter(id=res.POST['noteid'])
+        if noteOfId[0].user == res.user:
+            noteOfId[0].delete()
+    return redirect("/home")
 
 def login(res):
     if res.user.is_authenticated:

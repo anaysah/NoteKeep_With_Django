@@ -6,9 +6,7 @@
 {% load static%}
 <link rel="stylesheet" href={% static "main/home.css" %}>
 <!-- <p>this is ->{{user.is_authenticated}}<- here</p> -->
-<form action="" method="POST">
-    <!-- <h1>Add Note:</h1>
-    <textarea name="note" id="" rows="5" cols="33" ></textarea> -->
+<form action="" method="POST" id="addnote">
     {% csrf_token %}
     {{NoteFormObj}}
     <button>Add</button>
@@ -16,8 +14,11 @@
 <div id="allnotes">
     {% for note in allNotes %}
     <ul>
+        <form action="/deletenote" style="display:inline;" method="post">
+            {% csrf_token %}
         {{note.data}}
-        <button>&times;</button>
+        <button type="submit" name="noteid" value="{{note.id}}">&times;</button>
+    </form>
     </ul>
     {% endfor%}
 </div>
