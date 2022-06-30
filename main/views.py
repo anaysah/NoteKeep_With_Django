@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as loginAs, logout as logoutAs
@@ -11,17 +12,19 @@ class NoteForm(forms.Form):
     
 def home(response):
     NoteFormObj = NoteForm()
-    print(response.path)
     if response.user.is_authenticated:
         if response.method == "POST":
             data = response.POST['noteFeild']
             note = Notes(data=data,user=response.user)
             note.save()
             return redirect("/home")
-        elif response.method == "GET":
-            return render(response,'main/home.html',{"user":response.user,"NoteFormObj":NoteFormObj})
+        elif response.method == "GET" and response.path=="/home":
+            allNotes = response.user.notes_set.all()
+            return render(response,'main/home.html',{"user":response.user,"NoteFormObj":NoteFormObj,"allNotes":allNotes})
     else:
         return redirect("/auth/login")
+
+
 
 def login(res):
     if res.user.is_authenticated:

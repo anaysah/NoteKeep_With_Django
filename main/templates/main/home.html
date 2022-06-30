@@ -14,9 +14,13 @@
     <button>Add</button>
 </form>
 <div id="allnotes">
-    
+    {% for note in allNotes %}
+    <ul>
+        {{note.data}}
+        <button>&times;</button>
+    </ul>
+    {% endfor%}
 </div>
-
 
 
 {% endblock%}

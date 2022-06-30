@@ -29,18 +29,6 @@
     </div>
     <div id="alert">
 
-                <!-- <p></p>
-                <button >&times;</button> -->
-                <script>
-                    window.setTimeout(()=>{
-                        document.querySelector("#alert").remove()
-                    },3000)
-                    document.querySelector("#alert>button").addEventListener("click", ()=>{
-                        let child = document.querySelector("#alert")
-                        child.textContent = '';
-                    });
-                </script>
-            
     </div>
 
     <main>{% block main %}{% endblock %}</main>
