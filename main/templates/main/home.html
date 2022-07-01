@@ -5,7 +5,7 @@
 {% block main%}
 {% load static%}
 <link rel="stylesheet" href={% static "main/home.css" %}>
-<!-- <p>this is ->{{user.is_authenticated}}<- here</p> -->
+
 <form action="" method="POST" id="addnote">
     {% csrf_token %}
     {{NoteFormObj}}
@@ -14,14 +14,36 @@
 <div id="allnotes">
     {% for note in allNotes %}
     <ul>
-        <form action="/deletenote" style="display:inline;" method="post">
-            {% csrf_token %}
-        {{note.data}}   
-        <button type="submit" name="noteid" value="{{note.id}}">&times;</button>
+        {{note.data}}
+        <button value="{{note.id}}">&times;</button>
     </form>
     </ul>
     {% endfor%}
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+        $("ul>button").click(function(){
+            requestData = { 'csrfmiddlewaretoken':"{{ csrf_token }}", 'noteid':$(this).attr('value')}
+            $.ajax({
+                type:"POST",
+                url:"{% url 'deletenote' %}",
+                data:requestData,
+                success:(res)=>{
+                    <!-- window.location.href = '/' -->
+                    $(this).parent().remove()
+                },
+                error:()=>{
+                    alert("error geting data")
+                }
+            })
+        });
+
+
+
+      });
+</script>
 
 {% endblock%}

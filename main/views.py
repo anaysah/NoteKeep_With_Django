@@ -25,11 +25,9 @@ def home(response):
         return redirect("/auth/login")
 
 def deleteNote(res):
-    if res.method == "POST" and res.user.is_authenticated:
-        noteOfId =  Notes.objects.filter(id=res.POST['noteid'])
-        if noteOfId[0].user == res.user:
-            noteOfId[0].delete()
-    return redirect("/home")
+    noteToDelete = Notes.objects.filter(id=res.POST['noteid'])
+    noteToDelete[0].delete()
+    return JsonResponse({})
 
 def login(res):
     if res.user.is_authenticated:
@@ -50,12 +48,7 @@ def signup(res):
         email = res.POST['email']
         password = res.POST['password']
         form = User.objects.create_user(username,email,password)
-        # print(form.is_valid())    
-        # if form.is_valid():
-        #     form.save()
         return redirect("/auth/signup")
-    # elif res.method == "GET":
-        # form = UserCreationForm()
     data = {"value":"signup"}
     return render(res,'main/auth.html',data)
 
