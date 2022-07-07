@@ -8,22 +8,25 @@ from .models import Notes
 
 
 class NoteForm(forms.Form):
-    noteFeild = forms.CharField(max_length = 200,label="Note:",widget=forms.Textarea(attrs={"rows":5, "cols":33,"class":"addNote"}))
+    titleFeild = forms.CharField(max_length = 30,label='',widget=forms.TextInput(attrs={"class":"noteFields","placeholder":"Title"}))
+    noteFeild = forms.CharField(max_length = 200,widget=forms.Textarea(attrs={"rows":5, "cols":33,"class":"noteFields"}),label='')
     
 def home(response):
     NoteFormObj = NoteForm()
-    if response.user.is_authenticated:
-        if response.method == "POST":
-            data = response.POST['noteFeild']
-            note = Notes(data=data,user=response.user)
-            note.save()
-            return redirect("/home")
-        elif response.method == "GET" and (response.path=="/home" or response.path=="/"):
-            allNotes = response.user.notes_set.all()
-            return render(response,'main/home.html',{"user":response.user,"NoteFormObj":NoteFormObj,"allNotes":allNotes})
-    else:
-        return redirect("/auth/login")
-
+    if not response.user.is_authenticated:
+        return redirect("login")
+    if not response.method == "POST" and (response.path=="/home" or response.path=="/"):
+        allNotes = response.user.notes_set.all()
+        return render(response,'main/home.html',{"user":response.user,"NoteFormObj":NoteFormObj,"allNotes":allNotes})
+    
+    data = response.POST['noteFeild']
+    title = response.POST['titleFeild']
+    note = Notes(title=title,data=data,user=response.user)
+    note.save()
+    return redirect("home")
+    # elif response.method == "GET" :
+        
+    
 def deleteNote(res):
     noteToDelete = Notes.objects.filter(id=res.POST['noteid'])
     noteToDelete[0].delete()

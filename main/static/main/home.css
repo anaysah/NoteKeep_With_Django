@@ -2,47 +2,106 @@ main{
     justify-content: flex-start;
 }
 
-form#addnote{
+form#addNoteBlock{
     display: flex;
-    /* width: 100%; */
     font-family: var(--mainFont);
-    align-items: flex-start;
     padding: 20px;
     flex-direction: column;
     background-color: var(--FGcolor);
     margin: 20px;
     border-radius: 7px;
-    /* margin-left: 20px; */
+    row-gap: 3px;
 }
-[for="id_noteFeild"]{
+/* [for="id_noteFeild"]{
     font-size: 3ch;
     font-weight: bold;
-}
+} */
 
-form#addnote>textarea,button{
+form#addNoteBlock>*{
     /* for textarea and button */
     border-radius: 5px;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px #999;
+    font-size: 2ch;
+    padding: 5px 10px;
     /* three lines helps to look good */
 }
 
-form#addnote>textarea{
+form#addNoteBlock>textarea,#NoteBlockData{
     font-size: .8rem;
     letter-spacing: 1px;
-    padding: 10px;
-    max-width: 100%;
     line-height: 1.5;
+}
+
+form#addNoteBlock>input[type="submit"]{
+    margin-top: 5px;
+    width: fit-content;
+    padding: 5px 20px;
+    /* padding-left: 20px;
+    padding-right: 20px; */
+    flex-shrink: 3;
+    /* margin-top: 5px;  */
+}
+
+#NotesBlock{
+    display: grid;
+    /* grid-template-columns: repeat(4, minmax(100px, 1fr)); */
+    gap: 10px 10px;
+    padding: 0px 10px;
+    margin-bottom: 20px;
+}
+@media (min-width: 600px) {
+    #NotesBlock { 
+        grid-template-columns: repeat(4, minmax(100px, 1fr)); 
+    }
     
+  }
+
+  @media (min-width: 500px) and (max-width: 900px){
+    #NotesBlock { grid-template-columns: repeat(3, minmax(100px, 1fr)); }
+    
+  }
+
+  @media (max-width: 400px){
+    
+  }
+
+.NoteBlock{
+    /* max-width: 25%; */
+    display: flex;
+    font-family: var(--mainFont);
+    padding: 10px;
+    flex-direction: column;
+    background-color: var(--FGcolor);
+    box-sizing: border-box;
+    border-radius: 7px;
+    row-gap: 5px;
+    
+    /* margin: 10px; */
 }
 
-form#addnote>button{
-    font-size: 2ch;
-    padding: 5px 10px;
-    margin-top: 5px; 
+#NoteBlockTitle{
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5ch;
 }
 
-#allnotes{
+#NoteBlockData,.deleteNoteButton{
+    /* background-color: var(--BGcolor); */
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    flex-grow: 2;
+}
+.deleteNoteButton{
+    /* margin: 1px; */
+    padding: 0px 7px;
+    align-self: flex-start;
+    flex-grow: 0;
+    /* font-size: 3ch; */
+    /* line-height: px; */
+}
+/* #allnotes{
     display: flex;
     width: 100%;
     flex-wrap: wrap;
@@ -59,4 +118,5 @@ form#addnote>button{
 #allnotes ul button{
     margin-left: 10px;
     padding: 0px 3px;
-}
+} */
+

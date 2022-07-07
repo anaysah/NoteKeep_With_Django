@@ -6,18 +6,18 @@
 {% load static%}
 <link rel="stylesheet" href={% static "main/home.css" %}>
 
-<form action="" method="POST" id="addnote">
+<form action="" method="POST" id="addNoteBlock">
     {% csrf_token %}
     {{NoteFormObj}}
-    <button>Add</button>
+    <input type="submit" value="Add">
 </form>
-<div id="allnotes">
+<div id="NotesBlock">
     {% for note in allNotes %}
-    <ul>
-        {{note.data}}
-        <button value="{{note.id}}">&times;</button>
-    </form>
-    </ul>
+    <div class="NoteBlock" id="NoteBlock{{note.id}}">
+        <div id="NoteBlockTitle"><span>{{note.title}}</span><span value="{{note.id}}" class="deleteNoteButton">&times;</span></div>
+        <div id="NoteBlockData">{{note.data}}</div>
+        
+    </div>
     {% endfor%}
 </div>
 
@@ -25,24 +25,22 @@
 <script>
     $(document).ready(function(){
 
-        $("ul>button").click(function(){
+        $(".deleteNoteButton").click(function(){
+            console.log("clicked")
+            $(this).off("click");
             requestData = { 'csrfmiddlewaretoken':"{{ csrf_token }}", 'noteid':$(this).attr('value')}
             $.ajax({
                 type:"POST",
                 url:"{% url 'deletenote' %}",
                 data:requestData,
                 success:(res)=>{
-                    <!-- window.location.href = '/' -->
-                    $(this).parent().remove()
+                    $(`#NoteBlock${$(this).attr('value')}`).remove()
                 },
                 error:()=>{
                     alert("error geting data")
                 }
             })
         });
-
-
-
       });
 </script>
 

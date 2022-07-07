@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path, include 
 
 from main import views as mainV
-mainUrl = [path("home",mainV.home),path("deletenote",mainV.deleteNote,name="deletenote"),path("",mainV.home)]
-authUrl = [path("login",mainV.login),path("signup",mainV.signup),path("logout",mainV.logout)]
+mainUrl = [path("home",mainV.home,name="home"),path("deletenote",mainV.deleteNote,name="deletenote"),path("",mainV.home)]
+authUrl = [path("login",mainV.login,name="login"),path("signup",mainV.signup,name="signup"),path("logout",mainV.logout,name="logout")]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
