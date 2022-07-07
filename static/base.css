@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Mingzat&display=swap');
+:root {
+    --BGcolor:#bfedef;
+    --FGcolor:#98E2C6;
+    --HEADcolor:#24252a;
+    /* --mainFont:'Mingzat', sans-serif; */
+    --mainFont:"Bahnschrift", Times, serif; 
+    
+  }
+
 *{
     margin: 0;
     padding: 0;
@@ -10,7 +20,7 @@ body{
     /* border: 2px #0085a5 solid; */
     display: flex;
     flex-direction: column;
-    background-color: #bfedef;
+    background-color: var(--BGcolor);
 }
 
 #header{
@@ -19,8 +29,8 @@ body{
     grid-template-areas: "div nav div";
     align-items: center;
     padding: 10px;
-    font-family: "Bahnschrift", Times, serif;
-    background-color: #24252a;
+    font-family: var(--mainFont);
+    background-color: var(--HEADcolor);
     color: white;
 }
 
@@ -62,7 +72,7 @@ nav>a:active{
     text-align: center;
     justify-self: end;
     background-color:  #4F86C6;
-    color: #BFEDEF;
+    color: var(--BGcolor);
     text-transform: capitalize;
 }
 
@@ -70,11 +80,11 @@ nav>a:active{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #98E2C6;
+    background-color: var(--FGcolor);
 }
 
 #alert>p{
-    font-family: "Bahnschrift", Times, serif;
+    font-family: var(--mainFont);
     margin: 5px 10px;
     /* padding: 20px 10px; */
 }
@@ -92,15 +102,15 @@ main{
     align-items: center;
     flex-direction: column;
     height: 100%;
-    background-color: #bfedef;
+    background-color: var(--BGcolor);
 }
 
 footer{
     margin: 3px;
     box-sizing: border-box;
-    background-color: #24252a;
+    background-color: var(--HEADcolor);
     color: #5fc880;
-    font-family: "Bahnschrift", Times, serif;
+    font-family: var(--mainFont);
     padding: 5px 10px;
     /* position: sticky; */
     border-radius: 5px;

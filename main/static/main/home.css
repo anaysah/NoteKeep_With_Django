@@ -5,11 +5,11 @@ main{
 form#addnote{
     display: flex;
     /* width: 100%; */
-    font-family: "Bahnschrift", Times, serif;   
+    font-family: var(--mainFont);
     align-items: flex-start;
     padding: 20px;
     flex-direction: column;
-    background-color: #98E2C6;
+    background-color: var(--FGcolor);
     margin: 20px;
     border-radius: 7px;
     /* margin-left: 20px; */
@@ -18,27 +18,28 @@ form#addnote{
     font-size: 3ch;
     font-weight: bold;
 }
+
+form#addnote>textarea,button{
+    /* for textarea and button */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+    /* three lines helps to look good */
+}
+
 form#addnote>textarea{
     font-size: .8rem;
-    
     letter-spacing: 1px;
     padding: 10px;
     max-width: 100%;
     line-height: 1.5;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px #999;
+    
 }
 
 form#addnote>button{
     font-size: 2ch;
     padding: 5px 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px #999;
-    /* background-color: blue; */
-     
+    margin-top: 5px; 
 }
 
 #allnotes{
@@ -51,9 +52,9 @@ form#addnote>button{
 #allnotes>ul{
     box-sizing: border-box;
     padding: 10px;
-    background-color: #98E2C6;
+    background-color: var(--FGcolor);
     border-radius: 5px;
-    font-family: "Bahnschrift", Times, serif;   
+    font-family: var(--mainFont);   
 }
 #allnotes ul button{
     margin-left: 10px;
