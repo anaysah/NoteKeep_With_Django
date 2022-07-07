@@ -9,7 +9,7 @@
     
     {% load static%}
     <link rel="stylesheet" href={% static "base.css" %}>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -18,15 +18,16 @@
         <nav>
             <!-- <p>this is ->{{user.is_authenticated}}<- here</p> -->
             {% if user.is_authenticated %}
-            <a href="/home">Home</a>
-            <a href="/auth/logout">Logout</a>
+            <a href="/home" id="navHome">Home</a>
+            <a href="/auth/logout" id="navLogout">Logout</a>
             {% else %}
-            <a href="/auth/login">Login</a>
+            <a href="/auth/login" id="navLogin">Login</a>
             {% endif %}
-            <a href="/auth/signup">SignUp</a>
+            <a href="/auth/signup" id="navSignup">SignUp</a>
         </nav>
-        <div id="activepage">{% block activepage %}Home{% endblock %}</div>
+        <!-- <div id="activepage">{% block activepage %}Home{% endblock %}</div> -->
     </div>
+
     <div id="alert">
 
     </div>
@@ -42,6 +43,16 @@
 
 
 </body>
-
+<script>
+    $(document).ready(function(){
+        $("#nav{{value}}").css(
+            {
+                "background-color": "var(--FGcolor)",
+                "color": "var(--HEADcolor)",
+                "border-radius": "20px"
+            }
+        )
+      });
+</script>
 
 </html>

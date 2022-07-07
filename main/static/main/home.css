@@ -63,7 +63,9 @@ form#addNoteBlock>input[type="submit"]{
   }
 
   @media (max-width: 400px){
-    
+    #activepage{
+        display: none;
+    } 
   }
 
 .NoteBlock{

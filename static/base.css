@@ -24,8 +24,8 @@ body{
 
 #header{
     display: grid;
-    grid-template-columns: 2fr 1fr 2fr;
-    grid-template-areas: "div nav div";
+    grid-template-columns: 4fr 1fr;
+    grid-template-areas: "div div";
     align-items: center;
     padding: 10px;
     font-family: var(--mainFont);
@@ -58,21 +58,14 @@ nav>a{
     color: blanchedalmond;
     text-decoration: solid;
 }
-nav>a:active{
-    color: red;
+
+a:active{
+    background-color: var(--FGcolor);
 }
-
-
-#activepage{
-    background-color: #0085a5;
-    padding: 5px 20px;
+nav>a:active{
+    background-color: var(--FGcolor);
+    color: var(--HEADcolor);
     border-radius: 20px;
-    width: 10ch;
-    text-align: center;
-    justify-self: end;
-    background-color:  #4F86C6;
-    color: var(--BGcolor);
-    text-transform: capitalize;
 }
 
 #alert{

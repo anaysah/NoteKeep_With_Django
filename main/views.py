@@ -17,7 +17,7 @@ def home(response):
         return redirect("login")
     if not response.method == "POST" and (response.path=="/home" or response.path=="/"):
         allNotes = response.user.notes_set.all()
-        return render(response,'main/home.html',{"user":response.user,"NoteFormObj":NoteFormObj,"allNotes":allNotes})
+        return render(response,'main/home.html',{"user":response.user,"NoteFormObj":NoteFormObj,"allNotes":allNotes,"value":"Home"})
     
     data = response.POST['noteFeild']
     title = response.POST['titleFeild']
@@ -42,7 +42,7 @@ def login(res):
         if user is not None:
             loginAs(res,user)
             return redirect("/home")
-    data = {"value":"login"}
+    data = {"value":"Login"}
     return render(res,'main/auth.html',data)
 
 def signup(res):
@@ -52,7 +52,7 @@ def signup(res):
         password = res.POST['password']
         form = User.objects.create_user(username,email,password)
         return redirect("/auth/signup")
-    data = {"value":"signup"}
+    data = {"value":"Signup"}
     return render(res,'main/auth.html',data)
 
 def logout(res):

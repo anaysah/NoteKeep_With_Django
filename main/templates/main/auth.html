@@ -7,7 +7,7 @@
     <link rel="stylesheet" href={% static "main/auth.css" %}>
     <form action="" method="post">
     {% csrf_token %}
-    {% if value == "signup" %}
+    {% if value == "Signup" %}
             <h1>SignUp</h1>
             <label for="email">Email Id:</label>
             <input type="email" name="email" placeholder="name@example.com">
@@ -20,7 +20,7 @@
             <button type="submit">Submit</button>
             <!-- {{form.as_p}} -->
         
-    {% elif value == "login" %}
+    {% elif value == "Login" %}
             <h1>Login</h1>
             <label for="email">Email Id:</label>
             <input type="username" name="email" placeholder="Enter email here">
