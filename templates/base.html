@@ -15,7 +15,7 @@
 <body>
     <div id="header">
         <div id="title">Note Keeping</div>
-        <nav>
+        <div id="nav">
             <!-- <p>this is ->{{user.is_authenticated}}<- here</p> -->
             {% if user.is_authenticated %}
             <a href="/home" id="navHome">Home</a>
@@ -24,8 +24,20 @@
             <a href="/auth/login" id="navLogin">Login</a>
             {% endif %}
             <a href="/auth/signup" id="navSignup">SignUp</a>
-        </nav>
-        <!-- <div id="activepage">{% block activepage %}Home{% endblock %}</div> -->
+        </div>
+
+        <div class="dropdown" id="nav2">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                {% if user.is_authenticated %}
+                <a href="/home" >Home</a>
+                <a href="/auth/logout" >Logout</a>
+                {% else %}
+                <a href="/auth/login" >Login</a>
+                {% endif %}
+                <a href="/auth/signup" >SignUp</a>
+            </div>
+          </div>
     </div>
 
     <div id="alert">
@@ -41,18 +53,18 @@
         <span id="name">By Ajay Sahu</span>
     </div>
 
-
+    
+    <script>
+        $(document).ready(function(){
+            $("#nav{{value}}").css(
+                {
+                    "background-color": "var(--FGcolor)",
+                    "color": "var(--HEADcolor)",
+                    "border-radius": "20px"
+                }
+            )
+            $(".dropbtn").text("{{value}}")
+          });
+    </script>    
 </body>
-<script>
-    $(document).ready(function(){
-        $("#nav{{value}}").css(
-            {
-                "background-color": "var(--FGcolor)",
-                "color": "var(--HEADcolor)",
-                "border-radius": "20px"
-            }
-        )
-      });
-</script>
-
 </html>

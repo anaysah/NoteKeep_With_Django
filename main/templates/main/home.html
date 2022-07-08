@@ -26,7 +26,6 @@
     $(document).ready(function(){
 
         $(".deleteNoteButton").click(function(){
-            console.log("clicked")
             $(this).off("click");
             requestData = { 'csrfmiddlewaretoken':"{{ csrf_token }}", 'noteid':$(this).attr('value')}
             $.ajax({

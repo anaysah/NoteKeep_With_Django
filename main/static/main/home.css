@@ -50,23 +50,7 @@ form#addNoteBlock>input[type="submit"]{
     padding: 0px 10px;
     margin-bottom: 20px;
 }
-@media (min-width: 600px) {
-    #NotesBlock { 
-        grid-template-columns: repeat(4, minmax(100px, 1fr)); 
-    }
-    
-  }
 
-  @media (min-width: 500px) and (max-width: 900px){
-    #NotesBlock { grid-template-columns: repeat(3, minmax(100px, 1fr)); }
-    
-  }
-
-  @media (max-width: 400px){
-    #activepage{
-        display: none;
-    } 
-  }
 
 .NoteBlock{
     /* max-width: 25%; */
