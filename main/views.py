@@ -36,9 +36,9 @@ def login(res):
     if res.user.is_authenticated:
         return redirect("/home")
     if res.method == "POST":
-        username = res.POST['email']
+        email = res.POST['email']
         password = res.POST['password']
-        user = authenticate(res,username=username, password=password)
+        user = authenticate(res,username=email, password=password)
         if user is not None:
             loginAs(res,user)
             return redirect("/home")
@@ -47,10 +47,12 @@ def login(res):
 
 def signup(res):
     if res.method == "POST":
-        username = res.POST['name']
+        name = res.POST['name'].split()
+        first_name = name[0]
+        last_name = ' '.join(name[1:])
         email = res.POST['email']
         password = res.POST['password']
-        form = User.objects.create_user(username,email,password)
+        form = User.objects.create_user(username=email,first_name=first_name, last_name=last_name, email=email, password=password)
         return redirect("/auth/signup")
     data = {"value":"Signup"}
     return render(res,'main/auth.html',data)
