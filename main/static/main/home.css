@@ -84,6 +84,7 @@ form#addNoteBlock>input[type="submit"]{
     padding: 0px 7px;
     align-self: flex-start;
     flex-grow: 0;
+    cursor: pointer;
     /* font-size: 3ch; */
     /* line-height: px; */
 }

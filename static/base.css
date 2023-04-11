@@ -134,26 +134,34 @@ body {
     border-radius: 4px 4px 0px 0px ;
 }
 
-#alert {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--FGcolor);
-}
-
-#alert>p {
+#alert{
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    width: fit-content;
+    background-color: var(--BGcolor);
+    color: var(--HEADcolor);
+    transform: translateX(-50%);
+    padding: .2rem;
     font-family: var(--mainFont);
-    margin: 5px 10px;
-    /* padding: 20px 10px; */
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    border-radius: 5px;
 }
 
-#alert>button {
-    display: inline-block;
+#alert *{
+    display: flex;
     justify-content: center;
     align-items: center;
-    border: 0;
-    margin-right: 10px;
 }
+
+#alert .alert-btn{
+    background-color: var(--FGcolor);
+    cursor: pointer;
+}
+
+
 
 main {
     display: flex;

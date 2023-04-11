@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Home{% endblock %}</title>
-    
+
     {% load static%}
     <link rel="stylesheet" href={% static "base.css" %}>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -30,32 +30,37 @@
             <button class="dropbtn">Menu</button>
             <div class="dropdown-content">
                 {% if user.is_authenticated %}
-                <a href="/home" >Home</a>
-                <a href="/auth/logout" >Logout</a>
+                <a href="/home">Home</a>
+                <a href="/auth/logout">Logout</a>
                 {% else %}
-                <a href="/auth/login" >Login</a>
+                <a href="/auth/login">Login</a>
                 {% endif %}
-                <a href="/auth/signup" >SignUp</a>
+                <a href="/auth/signup">SignUp</a>
             </div>
-          </div>
+        </div>
     </div>
 
+    {% if  message %}
+        
     <div id="alert">
-
+        <span>{{ message }}</span>
+        <span class="alert-btn">&#10006;</span>
     </div>
+
+    {% endif %}
 
     <main>{% block main %}{% endblock %}
 
-        
+
     </main>
 
     <div id="footer"><span id="django">With <span>Django</span></span>
         <span id="name">By Ajay Sahu</span>
     </div>
 
-    
+
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $("#nav{{value}}").css(
                 {
                     "background-color": "var(--FGcolor)",
@@ -63,8 +68,17 @@
                     "border-radius": "4px"
                 }
             )
-            $(".dropbtn").text("{{value}}")
-          });
-    </script>    
+            $(".dropbtn").html("{{value}} &#9660;");
+
+            $(".alert-btn").click(function () {
+                $("#alert").remove();
+            });
+
+            var height = $('.alert-btn').height();
+            $('.alert-btn').width(height);
+        });
+
+    </script>
 </body>
+
 </html>

@@ -33,28 +33,42 @@ def deleteNote(res):
     return JsonResponse({})
 
 def login(res):
+    message = None
+    data = {"value":"Login"}
     if res.user.is_authenticated:
         return redirect("/home")
     if res.method == "POST":
         email = res.POST['email']
         password = res.POST['password']
-        user = authenticate(res,username=email, password=password)
-        if user is not None:
-            loginAs(res,user)
-            return redirect("/home")
-    data = {"value":"Login"}
+        if User.objects.filter(username=email).exists():
+            user = authenticate(res,username=email, password=password)
+            if user is not None:
+                loginAs(res,user)
+                return redirect("/home")
+            else:
+                data['message'] = "wrong password"
+        else:
+            data['message'] = "user not exits";
     return render(res,'main/auth.html',data)
 
 def signup(res):
+    data = {"value":"Signup"}
+    data['message'] = None
     if res.method == "POST":
         name = res.POST['name'].split()
         first_name = name[0]
         last_name = ' '.join(name[1:])
         email = res.POST['email']
         password = res.POST['password']
-        form = User.objects.create_user(username=email,first_name=first_name, last_name=last_name, email=email, password=password)
-        return redirect("/auth/signup")
-    data = {"value":"Signup"}
+        if not User.objects.filter(username=email).exists():
+            user = User.objects.create_user(username=email,first_name=first_name, last_name=last_name, email=email, password=password)
+            if isinstance(user, User):
+                data['message'] = "User Created"
+            else:
+                data['message'] = "Not Created"
+        else:
+            data['message'] = "user already exists"
+    
     return render(res,'main/auth.html',data)
 
 def logout(res):
