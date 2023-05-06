@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mingzat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 :root {
     --BGcolor: #bfedef;
@@ -6,7 +7,7 @@
     --HEADcolor: #24252a;
     /* --mainFont:'Mingzat', sans-serif; */
     --mainFont: "Bahnschrift", Times, serif;
-
+    --poppinsFont: 'Poppins', sans-serif;
 }
 
 * {
@@ -21,9 +22,10 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--BGcolor);
+    font-family: var(--poppinsFont);
 }
 
-#header {
+/* #header {
     display: grid;
     grid-template-columns: 5fr 2fr;
     grid-template-areas: "div div";
@@ -32,10 +34,21 @@ body {
     font-family: var(--mainFont);
     background-color: var(--HEADcolor);
     color: white;
+} */
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+    background-color: var(--HEADcolor);
+    z-index: 10;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
 #title {
-    font-size: 3ch;
+    font-size: 1.5rem;
+    font-weight: bold;
     /* this is for gradient */
     background-color: #f3ec78;
     background-image: linear-gradient(45deg, #f3ec78, #af4261);
@@ -60,7 +73,7 @@ body {
     color: blanchedalmond;
     text-decoration: solid;
     /* width: fit-content; */
-    padding: 2px 10px;
+    padding: 2px 1rem;
 }
 
 /* a:active {
@@ -89,7 +102,8 @@ body {
     float: right;
     letter-spacing: 1px;
     font-weight: bold;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-family: var(--poppinsFont);
     border-radius: 4px 4px;
     overflow: hidden;
     /* text-align: right; */
@@ -142,12 +156,16 @@ body {
     background-color: var(--BGcolor);
     color: var(--HEADcolor);
     transform: translateX(-50%);
-    padding: .2rem;
-    font-family: var(--mainFont);
+    /* padding: .2rem; */
+    /* font-family: var(--mainFont); */
     display: flex;
     justify-content: center;
     gap: 1rem;
     border-radius: 5px;
+    z-index: 12;
+    border:#af4261 solid 2px;
+    overflow: hidden;
+    padding-left: .2rem;
 }
 
 #alert *{
@@ -204,9 +222,9 @@ main {
 
 
 @media (min-width: 900px) {
-    #NotesBlock {
+    /* #NotesBlock {
         grid-template-columns: repeat(4, minmax(100px, 1fr));
-    }
+    } */
 
     #nav2 {
         display: none;
@@ -214,25 +232,25 @@ main {
 
 }
 @media (min-width: 600px) and (max-width: 900px) {
-    #NotesBlock {
+    /* #NotesBlock {
         grid-template-columns: repeat(3, minmax(100px, 1fr));
-    }
+    } */
     #nav2 {
         display: none;
     }
 }
 
 
-@media (min-width: 400px) and (max-width: 600px) {
-    #NotesBlock {
+@media (min-width: 450px) and (max-width: 600px) {
+    /* #NotesBlock {
         grid-template-columns: repeat(2, minmax(100px, 1fr));
-    }
+    } */
     #nav2 {
         display: none;
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
     #activepage {
         display: none;
     }
