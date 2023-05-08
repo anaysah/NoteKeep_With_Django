@@ -8,7 +8,8 @@
 
 <form action="" method="POST" id="addNoteBlock">
     {% csrf_token %}
-    {{NoteFormObj}}
+    {{ NoteFormObj.title }}
+    {{ NoteFormObj.data }}
     <input type="submit" value="Add">
 </form>
 <div id="NotesBlock">

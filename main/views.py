@@ -7,24 +7,54 @@ from django import forms
 from .models import Notes
 
 
-class NoteForm(forms.Form):
-    titleFeild = forms.CharField(max_length = 30,label='',widget=forms.TextInput(attrs={"class":"noteFields","placeholder":"Title"}))
-    noteFeild = forms.CharField(max_length = 200,widget=forms.Textarea(attrs={"rows":5, "cols":33,"class":"noteFields"}),label='')
+# class NotesForm(forms.Form):
+#     titleFeild = forms.CharField(max_length = 50,label='',widget=forms.TextInput(attrs={"class":"noteFields","placeholder":"Title"}))
+#     noteFeild = forms.CharField(max_length = 200,widget=forms.Textarea(attrs={"rows":5, "cols":33,"class":"noteFields"}),label='')
+# class NotesForm(forms.ModelForm):
+#     class Meta:
+#         model = Notes
+#         fields = ['title', 'data']
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.fields['title'].widget.attrs.update({'placeholder': 'Title','class':'noteFields'})
+#         self.fields['data'].widget.attrs.update({'placeholder': 'Your Note', "rows":5,"class":"noteFields"})
     
-def home(response):
-    NoteFormObj = NoteForm()
-    if not response.user.is_authenticated:
-        return redirect("login")
-    if not response.method == "POST" and (response.path=="/home" or response.path=="/"):
-        allNotes = response.user.notes_set.all()
-        return render(response,'main/home.html',{"user":response.user,"NoteFormObj":NoteFormObj,"allNotes":allNotes,"value":"Home"})
+# def home(response):
+#     NoteFormObj = NotesForm()
+#     if not response.user.is_authenticated:
+#         return redirect("login")
+#     if not response.method == "POST" and (response.path=="/home" or response.path=="/"):
+#         allNotes = response.user.notes_set.all()
+#         return render(response,'main/home.html',{"user":response.user,"NoteFormObj":NoteFormObj,"allNotes":allNotes,"value":"Home"})
     
-    data = response.POST['noteFeild']
-    title = response.POST['titleFeild']
-    note = Notes(title=title,data=data,user=response.user)
-    note.save()
-    return redirect("home")
+#     data = response.POST['noteFeild']
+#     title = response.POST['titleFeild']
+#     note = Notes(title=title,data=data,user=response.user)
+#     note.save()
+#     return redirect("home")
     # elif response.method == "GET" :
+
+class NotesForm(forms.ModelForm):
+    class Meta:
+        model = Notes
+        fields = ['title', 'data']
+        widgets = {
+            'title': forms.TextInput(attrs={'placeholder': 'Title', 'class': 'noteFields'}),
+            'data': forms.Textarea(attrs={'placeholder': 'Your Note', 'rows': 5, 'class': 'noteFields'})
+        }
+
+def home(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    NoteFormObj = NotesForm(request.POST or None)
+    if request.method == 'POST' and NoteFormObj.is_valid():
+        note = NoteFormObj.save(commit=False)
+        note.user = request.user
+        note.save()
+        return redirect('home')
+    allNotes = request.user.notes_set.all()
+    return render(request, 'main/home.html', {'user': request.user, 'NoteFormObj': NoteFormObj, 'allNotes': allNotes, 'value': 'Home'})
+
         
     
 def deleteNote(res):
