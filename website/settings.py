@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from os import environ
+from os import path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_#pr!697&#-(fyj*wvhfd)87nyv=y=+36wj3iku=^j1e-x!fwz'
+# SECRET_KEY = 'django-insecure-_#pr!697&#-(fyj*wvhfd)87nyv=y=+36wj3iku=^j1e-x!fwz'
+SECRET_KEY = environ.get('SECRET_KEY', default='django-insecure-_#pr!697&#-(fyj*wvhfd)87nyv=y=+36wj3iku=^j1e-x!fwz')
+# SECRET_KEY = environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -120,7 +124,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+
+#static_url and staic_root is needed to generate staticfiles folder for production
 STATIC_URL = '/static/'
+# STATIC_ROOT = '/static/'
+STATIC_ROOT = path.join(BASE_DIR, 'staticfiles') #for staticfiles folder generations
 STATICFILES_DIRS = [STATIC_DIR]
 
 # STATIC_ROOT = [STATIC_DIR]
